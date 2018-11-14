@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel ./modules/suggest/index.html -p 8888 --open",
-    "build": "parcel build ./modules/suggest/index.html"
+    "build": "parcel build ./modules/suggest/index.html",
+    "create": "node tools/create"
   },
   "keywords": [
     "parcel+preact+ts"

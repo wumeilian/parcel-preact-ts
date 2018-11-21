@@ -1,29 +1,31 @@
 {
   "name": "parcel-preact-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "static template without router,  typescript + preact + parcel",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel ./modules/suggest/index.html -p 8888 --open",
-    "build": "parcel build ./modules/suggest/index.html",
-    "create": "node tools/create"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wumeilian/parcel-preact-ts.git"
   },
   "keywords": [
-    "parcel+preact+ts"
+    "typescript",
+    "preact",
+    "parcel"
   ],
+  "bin": {
+    "temp": "./bin/temp.js"
+  },
   "author": "wml",
   "license": "ISC",
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-preact": "^1.1.0",
-    "cssnano": "^4.1.7",
-    "parcel-bundler": "^1.10.3",
-    "typescript": "^3.1.6"
+  "bugs": {
+    "url": "https://github.com/wumeilian/parcel-preact-ts/issues"
   },
+  "homepage": "https://github.com/wumeilian/parcel-preact-ts#readme",
   "dependencies": {
-    "preact": "^8.3.1",
-    "preact-compat": "^3.18.4"
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.0"
   }
 }

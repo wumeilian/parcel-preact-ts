@@ -15,13 +15,19 @@ const question = {
 }
 
 var moduleName = '';
+
+function copyTemplateFile(templatePath, targetPath) {
+
+}
+
 module.exports = function() {
     inquirer.prompt(question)
         .then(answers => {
             console.log(answers, 88)
             moduleName = answers['module-name'];
-            console.log(CURR_DIR, 99)
-            fs.mkdirSync(`${CURR_DIR}/modules/${moduleName}`, {recursive: true});
+            console.log(CURR_DIR, 99);
+            // const templatePath = 
+            // fs.mkdirSync(`${CURR_DIR}/modules/${moduleName}`, {recursive: true});
             
         });
 

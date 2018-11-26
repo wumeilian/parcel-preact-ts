@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// temp init  [enter a moudule name]
+// temp init -o [enter a moudule name]
 // temp new [modules]
 const program = require('commander');
 const initial = require('../tools/command/initial');
@@ -11,6 +11,9 @@ program
     .usage('[command]')
     .command('init')
     .description('initialize modules')
-    .action(initial);
+    .option('-o, --output <fileName>', 'Add an output file')
+    .action(function(options) {
+        initial(options.output);
+    });
 
 program.parse(process.argv);

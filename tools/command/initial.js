@@ -1,14 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const CURR_DIR = process.cwd();
+const REG = /^([A-Za-z\-\_\d])+$/;
+const log = console.log;
 
-const question = {
+const question =  {
     type: 'input',
     name: 'module-name',
     message: 'Please enter a module name:',
     validate: function (input) {
-        if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
+        if (REG.test(input)) return true;
         else return 'Module name may only include letters, numbers, underscores and hashes.';
     },
     default: 'demo'
@@ -16,19 +19,40 @@ const question = {
 
 var moduleName = '';
 
-function copyTemplateFile(templatePath, targetPath) {
-
+function copyTemplateFile(targetPath, moduleName) {
+    console.log(targetPath, 8888)
+    const templatePath = path.join(CURR_DIR, '/template');
+    const copyFile = fs.readdirSync(templatePath);
+    
+    copyFile.forEach(file => {
+        const origFilePath = `${templatePath}/${file}`;
+        const stats = fs.statSync(origFilePath);
+        
+        if(stats.isFile()) {
+            const contents = fs.readFileSync(origFilePath, 'UTF-8');
+            const writePath = path.join(targetPath, file);
+            fs.writeFileSync(writePath, contents, 'UTF-8');
+        }
+        else if(stats.isDirectory()) {
+            const dirName = file == 'demo' ? moduleName : file
+            fs.mkdirSync(`${targetPath}/${dirName}`);
+           
+        }
+        
+    })
+    
+    // log(chalk.green(targetPath))
 }
 
-module.exports = function() {
+module.exports = function(outputFile) {
     inquirer.prompt(question)
         .then(answers => {
-            console.log(answers, 88)
             moduleName = answers['module-name'];
-            console.log(CURR_DIR, 99);
-            // const templatePath = 
-            // fs.mkdirSync(`${CURR_DIR}/modules/${moduleName}`, {recursive: true});
-            
+            const fileName = (outputFile && REG.test(outputFile)) ? outputFile : '';
+            const targetPath = path.join(CURR_DIR, fileName);
+            const ModulePath = path.join(targetPath, moduleName);
+            fs.mkdirSync(targetPath, {recursive: true});
+            copyTemplateFile(targetPath, moduleName)
         });
 
 }

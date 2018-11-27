@@ -2,26 +2,25 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const figlet = require('figlet');
 const CURR_DIR = process.cwd();
 const REG = /^([A-Za-z\-\_\d])+$/;
 const log = console.log;
 
 const question =  {
     type: 'input',
-    name: 'module-name',
-    message: 'Please enter a module name:',
+    name: 'project-name',
+    message: 'Please enter a project name:',
     validate: function (input) {
         if (REG.test(input)) return true;
-        else return 'Module name may only include letters, numbers, underscores and hashes.';
+        else return 'Project name may only include letters, numbers, underscores and hashes.';
     },
-    default: 'demo'
+    default: 'modules'
 }
 
-var moduleName = '';
+var projectName = '';
 
-function copyTemplateFile(targetPath, moduleName) {
-    console.log(targetPath, 8888)
-    const templatePath = path.join(CURR_DIR, '/template');
+function copyTemplateFile(templatePath, targetPath) {    
     const copyFile = fs.readdirSync(templatePath);
     
     copyFile.forEach(file => {
@@ -34,25 +33,42 @@ function copyTemplateFile(targetPath, moduleName) {
             fs.writeFileSync(writePath, contents, 'UTF-8');
         }
         else if(stats.isDirectory()) {
-            const dirName = file == 'demo' ? moduleName : file
-            fs.mkdirSync(`${targetPath}/${dirName}`);
-           
+            fs.mkdirSync(`${targetPath}/${file}`);
+            copyTemplateFile(`${templatePath}/${file}`, `${targetPath}/${file}`);
         }
-        
-    })
-    
-    // log(chalk.green(targetPath))
+    });
 }
 
-module.exports = function(outputFile) {
+function logInfo () {
+    figlet('Temp CLI', function(err, data) {
+        if(err){
+            log(chalk.red('Some thing about figlet is wrong!'));
+        }
+
+        log(chalk.blue(data));
+        log(chalk.green(`   [√ Success] Project ${projectName} init finished!`));
+        log();
+        log('   Install dependencies:');
+        log(chalk.magenta(`     cd ${projectName} && npm install`));
+        log();
+        log('   Run the project:');
+        log(chalk.magenta('     temp start demo'));
+    });
+}
+
+module.exports = function() {
     inquirer.prompt(question)
         .then(answers => {
-            moduleName = answers['module-name'];
-            const fileName = (outputFile && REG.test(outputFile)) ? outputFile : '';
-            const targetPath = path.join(CURR_DIR, fileName);
-            const ModulePath = path.join(targetPath, moduleName);
-            fs.mkdirSync(targetPath, {recursive: true});
-            copyTemplateFile(targetPath, moduleName)
+            projectName = answers['project-name'];
+
+            const targetPath = path.join(CURR_DIR, projectName);
+            const templatePath = path.join(__dirname,'../../','template'); // 模板目录
+
+            fs.mkdirSync(targetPath);  // 创建工程名称
+
+            setTimeout(()=>logInfo(),1000);
+
+            copyTemplateFile(templatePath, targetPath)
         });
 
 }

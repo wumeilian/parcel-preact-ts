@@ -15,7 +15,7 @@ const question =  {
         if (REG.test(input)) return true;
         else return 'Project name may only include letters, numbers, underscores and hashes.';
     },
-    default: 'modules'
+    default: 'myproject'
 }
 
 var projectName = '';

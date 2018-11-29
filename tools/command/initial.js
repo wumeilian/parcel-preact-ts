@@ -24,11 +24,11 @@ function copyTemplateFile(templatePath, targetPath) {
     const copyFile = fs.readdirSync(templatePath);
     
     copyFile.forEach(file => {
-        const origFilePath = `${templatePath}/${file}`;
-        const stats = fs.statSync(origFilePath);
+        const orignFilePath = `${templatePath}/${file}`;
+        const stats = fs.statSync(orignFilePath);
         
         if(stats.isFile()) {
-            const contents = fs.readFileSync(origFilePath, 'UTF-8');
+            const contents = fs.readFileSync(orignFilePath, 'UTF-8');
             const writePath = path.join(targetPath, file);
             fs.writeFileSync(writePath, contents, 'UTF-8');
         }

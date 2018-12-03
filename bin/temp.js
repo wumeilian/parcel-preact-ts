@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // temp init
 // temp new [module]
+// temp start <muduleName> / npm start <muduleName>
 const program = require('commander');
 const initial = require('../tools/command/initial');
 const newModule =  require('../tools/command/newModule');
+const startModule = require('../tools/command/startModule');
 
 
 // 创建工程
@@ -19,5 +21,10 @@ program
     .command('new <moduleName>')
     .description('creat a new module')
     .action(newModule);
-    
+
+program
+    .command('start [moduleName]')
+    .description('start a module')
+    .action(startModule);
+
 program.parse(process.argv);

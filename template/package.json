@@ -1,5 +1,5 @@
 {
-  "name": "parcel-preact-ts",
+  "name": "ppt-template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,7 @@
     "build": "parcel build ./modules/suggest/index.html",
     "create": "node tools/create"
   },
-  "keywords": [
-    "parcel+preact+ts"
-  ],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {

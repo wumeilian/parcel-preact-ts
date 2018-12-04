@@ -6,7 +6,7 @@ module.exports = function startModule(){
 
     const moduleName = process.argv[3] || '';
 
-    if(moduleName === '' && !REG.test(moduleName)){
+    if(moduleName === '' ||  !REG.test(moduleName)){
         console.log(chalk.yellow('[warning]: Please enter a module name, which include letters, numbers, underscores and hashes.'));
         return;
     }

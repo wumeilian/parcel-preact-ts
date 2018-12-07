@@ -14,7 +14,7 @@ program
     .usage('[command]')
     .command('init')
     .description('initialize project')
-    .action(initial);
+    .action(test);
 
 // 新建模块
 program
@@ -28,3 +28,9 @@ program
     .action(startModule);
 
 program.parse(process.argv);
+
+function test(main, command) {
+    console.log(main, 9999)
+    console.log(command, 888)
+    console.log(command.name(), 77)
+}

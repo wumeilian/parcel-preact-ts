@@ -22,31 +22,5 @@ if(!fs.existsSync(modulePath)) {
     process.exit();
 }
 
-
-// 入口文件路径
-const inputFile = path.resolve(__dirname, `../modules/${MODULE}/index.html`);
-const outputFile = path.resolve(__dirname, `../dist/${MODULE}`)
-
-require('./parcel.config')
-// shell.exec(`parcel serve ${inputFile} -d dist/${MODULE} -p 8888 --open`, data => {
-   
-//     if (data) {
-//         console.error(`执行出错: ${data}`);
-//         return;
-//       }
-//       console.log(`error: ${data}`);
-// })
-
-// const serveP = exec(`parcl serve ${inputFile} -d dist/${MODULE} -p 8888 --open`);
-// serveP.stdout.on('data', stats => {
-//     console.log(stats, 999)
-// })
-
-// exec(`parcel serve ${inputFile} -d dist/${MODULE} -p 8888 --open`,  (error, stdout, stderr) => {
-//     if (error) {
-//         console.error(`执行出错: ${error}`);
-//         // return;
-//       }
-//       console.log(`stdout: ${stdout}`);
-//       console.log(`stderr: ${stderr}`);
-// })
+const start = require('./parcel.config');
+start();

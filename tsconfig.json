@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "lib": ["es2015", "es2016", "dom"],
+      "module": "commonjs",
+      "target": "es5",
+      "jsx": "react",
+      "jsxFactory": "h"
+    },
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ]
+  }

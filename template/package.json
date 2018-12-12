@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node tools/start",
-    "build": "parcel build ./modules/suggest/index.html",
-    "create": "node tools/create"
+    "build": "parcel build ./modules/demo/index.html"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +22,7 @@
   },
   "dependencies": {
     "preact": "^8.3.1",
-    "preact-compat": "^3.18.4"
+    "preact-compat": "^3.18.4",
+    "shelljs": "^0.8.3"
   }
 }

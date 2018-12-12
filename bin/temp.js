@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 // temp init
 // temp new [module]
-// temp start <muduleName> / npm start <muduleName>
+// temp start <muduleName> | npm start <muduleName>
+// temp build <moduleName> | npm build <muduleName>
 const program = require('commander');
 const initial = require('../tools/command/initial');
-const newModule =  require('../tools/command/newModule');
-const startModule = require('../tools/command/startModule');
-
+const create =  require('../tools/command/create');
+const start = require('../tools/command/start');
+const build = require('../tools/command/build');
 
 // 创建工程
 program
@@ -14,23 +15,24 @@ program
     .usage('[command]')
     .command('init')
     .description('initialize project')
-    .action(test);
+    .action(initial);
 
 // 新建模块
 program
     .command('new <moduleName>')
     .description('creat a new module')
-    .action(newModule);
+    .action(create);
 
+// 启动模块
 program
     .command('start [moduleName]')
     .description('start a module')
-    .action(startModule);
+    .action(start);
+
+// 构建模块    
+program
+    .command('build [moduleName]')
+    .description('build a module')
+    .action(build);
 
 program.parse(process.argv);
-
-function test(main, command) {
-    console.log(main, 9999)
-    console.log(command, 888)
-    console.log(command.name(), 77)
-}

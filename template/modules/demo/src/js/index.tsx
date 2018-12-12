@@ -3,7 +3,7 @@ import {h, render, Component } from 'preact';
 
 render((
     <div id="foo">
-        <span>Hello, world!</span>
-        <button onClick={ e => alert("hi!") }>Click Me</button>
+        <p>Hello, world!</p>
+        <button onClick={ e => alert("hi!") }>Test Button</button>
     </div>
-), document.body);
+),  document.getElementById('root'));

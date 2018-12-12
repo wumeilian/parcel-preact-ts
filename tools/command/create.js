@@ -6,7 +6,7 @@ const log = console.log;
 const REG = /^([A-Za-z\-\_\d])+$/;
 const moduleName = process.argv[3] || '';
 
-function newModule() {
+function create() {
     if(!REG.test(moduleName)) {
         log(chalk.red('Module name may only include letters, numbers, underscores and hashes.'))
         return;
@@ -47,4 +47,4 @@ function copyModules(tempPath, newPath) {
     });
 }
 
-module.exports = newModule;
+module.exports = create;

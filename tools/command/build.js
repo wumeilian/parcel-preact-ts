@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const chalk = require('chalk');
 const REG = /^([A-Za-z\-\_\d])+$/;
 
-module.exports = function startModule(){
+module.exports = function start(){
 
     const moduleName = process.argv[3] || '';
 
@@ -11,7 +11,7 @@ module.exports = function startModule(){
         return;
     }
 
-    shell.exec(`npm run start ${moduleName}`, function(err){
+    shell.exec(`npm run build ${moduleName}`, function(err){
         if(err){
             console.log(chalk.red(err));
             process.exit(0);

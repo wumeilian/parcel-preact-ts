@@ -18,7 +18,7 @@ const options = {
     watch: true, // 是否需要监听文件并在发生改变时重新编译它们，默认为 process.env.NODE_ENV !== 'production'
     cache: false, // 启用或禁用缓存，默认为 true
     cacheDir: '.cache', // 存放缓存的目录，默认为 .cache
-    minify: true, // 压缩文件，当 process.env.NODE_ENV === 'production' 时，会启用
+    minify: false, // 压缩文件，当 process.env.NODE_ENV === 'production' 时，会启用
     target: 'browser', // 浏览器/node/electron, 默认为 browser
     https: false, // 服务器文件使用 https 或者 http，默认为 false
     logLevel: 3, // 3 = 输出所有内容，2 = 输出警告和错误, 1 = 输出错误
